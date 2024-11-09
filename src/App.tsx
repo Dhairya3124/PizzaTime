@@ -8,13 +8,11 @@ function App() {
       <div className="min-h-screen bg-black text-white">
         <div className="mx-auto">
           <Navbar />
-          
         </div>
         <Routes>
-        <Route path="/" />
-            <Route path = "/new-user" element = {<NewUser />}>
-            </Route>
-          </Routes>
+          <Route path="/" />
+          <Route path="/new-user" element={<NewUser />}></Route>
+        </Routes>
       </div>
     </Router>
   );

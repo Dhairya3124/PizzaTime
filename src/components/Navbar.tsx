@@ -17,13 +17,17 @@ const Navbar: React.FC = () => {
     }
   ];
   return (
-    <nav className="py-5 flex justify-between items-center bg-black text-white
-    ">
-      <h1 className = "text-2xl font-bold -rotate-2 px-2"><Link to = "/">PizzaTime🍕</Link></h1>
+    <nav
+      className="py-5 flex justify-between items-center bg-black text-white
+    "
+    >
+      <h1 className="text-2xl font-bold -rotate-2 px-2">
+        <Link to="/">PizzaTime🍕</Link>
+      </h1>
       <div className="flex items-center gap-5">
-        <ul className='flex items-center gap-5 px-2'>
+        <ul className="flex items-center gap-5 px-2">
           {navLinks.map(item => (
-            <li key={item.link} className='text-1xl font-bold'>
+            <li key={item.link} className="text-1xl font-bold">
               <Link to={item.link}>{item.label}</Link>
             </li>
           ))}
