@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
     },
     {
       label: 'Manage Players🔧',
-      link: '/manage-player'
+      link: '/manage-players'
     },
     {
       label: 'Leaderboard🚀',

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import NewUser from './components/NewUser';
+import ManagePlayers from './components/ManagePlayers';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" />
           <Route path="/new-user" element={<NewUser />}></Route>
+          <Route path = "/manage-players" element={<ManagePlayers/>}></Route>
         </Routes>
       </div>
     </Router>
