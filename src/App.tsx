@@ -4,6 +4,7 @@ import NewUser from './components/NewUser';
 import ManagePlayers from './components/ManagePlayers';
 import PlayersInfo from './components/PlayersInfo';
 import Leaderboard from './components/Leaderboard';
+import HeroSection from './components/HeroSection';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Navbar />
         </div>
         <Routes>
-          <Route path="/" />
+          <Route path="/"  element = {<HeroSection />}></Route>
           <Route path="/new-user" element={<NewUser />}></Route>
           <Route path = "/manage-players" element={<ManagePlayers/>}></Route>
           <Route path="/player/:id" element={<PlayersInfo />} />
