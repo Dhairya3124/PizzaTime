@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import NewUser from './components/NewUser';
 import ManagePlayers from './components/ManagePlayers';
 import PlayersInfo from './components/PlayersInfo';
+import Leaderboard from './components/Leaderboard';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           <Route path="/new-user" element={<NewUser />}></Route>
           <Route path = "/manage-players" element={<ManagePlayers/>}></Route>
           <Route path="/player/:id" element={<PlayersInfo />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          
 
         </Routes>
       </div>
