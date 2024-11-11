@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { PlayerResponse } from '../lib/types';
+import { Link } from 'react-router-dom';
 const ManagePlayers: React.FC = () => {
   const [players, setPlayers] = useState<PlayerResponse[]>([]);
   const fetchPlayers = async () => {
@@ -49,12 +50,11 @@ const ManagePlayers: React.FC = () => {
                 {player.coins}
               </td>
               <td className="whitespace-nowrap px-4 py-2">
-                <a
-                  href="#"
-                  className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
-                >
-                  View
-                </a>
+                <Link to={`/player/${player.id}`}>
+                View
+                </Link>
+                  
+                
               </td>
             </tr>
           ))}

@@ -7,7 +7,7 @@ export type PlayerResponse = {
   name: string;
   age: number;
   gender: string;
-  data_created: string;
+  date_created: string;
   id:string;
   coins:number;
   logged_pizza:number;
