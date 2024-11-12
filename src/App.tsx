@@ -14,13 +14,11 @@ function App() {
           <Navbar />
         </div>
         <Routes>
-          <Route path="/"  element = {<HeroSection />}></Route>
+          <Route path="/" element={<HeroSection />}></Route>
           <Route path="/new-user" element={<NewUser />}></Route>
-          <Route path = "/manage-players" element={<ManagePlayers/>}></Route>
+          <Route path="/manage-players" element={<ManagePlayers />}></Route>
           <Route path="/player/:id" element={<PlayersInfo />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          
-
         </Routes>
       </div>
     </Router>

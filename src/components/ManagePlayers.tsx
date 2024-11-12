@@ -12,6 +12,9 @@ const ManagePlayers: React.FC = () => {
   useEffect(() => {
     fetchPlayers();
   }, []);
+  if (!players) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="overflow-x-auto">
@@ -50,11 +53,12 @@ const ManagePlayers: React.FC = () => {
                 {player.coins}
               </td>
               <td className="whitespace-nowrap px-4 py-2">
-                <Link to={`/player/${player.id}`} className='inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700'>
-                View
+                <Link
+                  to={`/player/${player.id}`}
+                  className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                >
+                  View
                 </Link>
-                  
-                
               </td>
             </tr>
           ))}

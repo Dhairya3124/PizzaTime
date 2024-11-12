@@ -3,23 +3,46 @@ import HandleSubmitForm from '../lib/user';
 import { useForm } from 'react-hook-form';
 import { PlayerData } from '../lib/types';
 import Alert from './Alert';
-const NewUser: React.FC = () => {
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+interface NewUserProps {
+  initialData?: PlayerData;
+  onSubmitSuccess?: () => void;
+  isEditMode?: boolean;
+}
+const NewUser: React.FC<NewUserProps> = ({
+  initialData,
+  onSubmitSuccess,
+  isEditMode
+}) => {
   const [alert, setAlert] = useState<{ show: boolean; success: boolean }>({
     show: false,
     success: false
   });
+  const { id } = useParams<{ id: string }>();
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting }
-  } = useForm<PlayerData>();
+  } = useForm<PlayerData>({
+    defaultValues: initialData || {}
+  });
   const onSubmit = handleSubmit(async data => {
     try {
-      await HandleSubmitForm(data);
+      console.log(data);
+      if (isEditMode && initialData) {
+        console.log(id);
+        await axios.put(`http://localhost:5000/api/v1/player/${id}`, data);
+      } else {
+        await HandleSubmitForm(data);
+      }
       reset();
       setAlert({ show: true, success: true });
+      if (onSubmitSuccess) {
+        onSubmitSuccess();
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
       setAlert({ show: true, success: false });
@@ -57,7 +80,7 @@ const NewUser: React.FC = () => {
                 id="inline-full-name"
                 type="text"
                 placeholder="Jane Doe"
-                {...register('Name', {
+                {...register('name', {
                   required: true,
                   minLength: {
                     value: 3,
@@ -65,8 +88,8 @@ const NewUser: React.FC = () => {
                   }
                 })}
               />
-              {errors.Name && (
-                <p className="text-red-600">{errors.Name?.message}</p>
+              {errors.name && (
+                <p className="text-red-600">{errors.name?.message}</p>
               )}
             </div>
           </div>
@@ -85,13 +108,13 @@ const NewUser: React.FC = () => {
                 id="inline-age"
                 type="number"
                 placeholder="Enter your age"
-                {...register('Age', {
+                {...register('age', {
                   required: true,
                   min: { value: 10, message: 'Min age is 10' }
                 })}
               />
-              {errors.Age && (
-                <p className="text-red-600">{errors.Age?.message}</p>
+              {errors.age && (
+                <p className="text-red-600">{errors.age?.message}</p>
               )}
             </div>
           </div>
@@ -108,7 +131,7 @@ const NewUser: React.FC = () => {
               <div className="inline-block relative w-64">
                 <select
                   className="block appearance-none w-full text-black bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                  {...register('Gender', {
+                  {...register('gender', {
                     required: true
                   })}
                 >

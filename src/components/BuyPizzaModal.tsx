@@ -6,9 +6,25 @@ interface BuyPizzaModalProps {
   onSave: (numPizzas: number) => void;
 }
 
-const BuyPizzaModal: React.FC<BuyPizzaModalProps> = ({ isOpen, onClose, onSave }) => {
+const BuyPizzaModal: React.FC<BuyPizzaModalProps> = ({
+  isOpen,
+  onClose,
+  onSave
+}) => {
   const [numPizzas, setNumPizzas] = useState<number>(0);
+  if (!isOpen) return null;
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setNumPizzas(value === '' ? 0 : parseInt(value));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (typeof numPizzas === 'number' && !isNaN(numPizzas)) {
+      handleSave();
+    }
+  };
   const handleSave = () => {
     onSave(numPizzas);
     onClose();
@@ -20,18 +36,13 @@ const BuyPizzaModal: React.FC<BuyPizzaModalProps> = ({ isOpen, onClose, onSave }
     <div className="fixed -inset-10 z-50 flex items-center justify-center bg-black bg-opacity-75">
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl mb-4 text-black">Order Pizzas</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSave();
-          }}
-        >
+        <form onSubmit={handleSubmit}>
           <label className="block mb-2">
             Number of Pizzas:
             <input
               type="number"
               value={numPizzas}
-              onChange={(e) => setNumPizzas(parseInt(e.target.value))}
+              onChange={handleInputChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md text-black"
               min="0"
             />
