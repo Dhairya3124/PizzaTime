@@ -50,7 +50,7 @@ const ManagePlayers: React.FC = () => {
                 {player.coins}
               </td>
               <td className="whitespace-nowrap px-4 py-2">
-                <Link to={`/player/${player.id}`}>
+                <Link to={`/player/${player.id}`} className='inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700'>
                 View
                 </Link>
                   
