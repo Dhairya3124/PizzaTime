@@ -23,7 +23,7 @@ const PlayersInfo: React.FC = () => {
   const submitBuyPizza = async (player: PlayerResponse) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/v1/pizza/${player.id}`,
+        `${import.meta.env.VITE_BACKEND_API_URL}/pizza/${player.id}`,
         player
       );
       console.log(res.data);
@@ -35,7 +35,7 @@ const PlayersInfo: React.FC = () => {
   const submitLogPizza = async (player: PlayerResponse) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/v1/logged-pizza/${player.id}`,
+        `${import.meta.env.VITE_BACKEND_API_URL}/logged-pizza/${player.id}`,
         player
       );
       console.log(res.data);
@@ -62,10 +62,10 @@ const PlayersInfo: React.FC = () => {
     const fetchPlayer = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/v1/player/${id}`
+          `${import.meta.env.VITE_BACKEND_API_URL}/player/${id}`
         );
         console.log(res.data);
-        setPlayer(res.data);
+        setPlayer(res.data[0]);
       } catch (error) {
         console.error('Error fetching player data:', error);
       }

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { PlayerResponse } from '../lib/types';
 
-
 const PizzaHistory: React.FC<{ player: PlayerResponse }> = ({ player }) => {
   const [pizza, setPizza] = useState<PlayerResponse[]>([]);
   const fetchPlayers = async (player: PlayerResponse) => {
-    const res = await axios.get(`http://localhost:5000/api/v1/logged-pizza/${player.id}`);
+    const res = await axios.get(
+      `${import.meta.env.VITE_BACKEND_API_URL}/logged-pizza/${player.id}`
+    );
     console.log(res.data);
     setPizza(res.data);
   };
@@ -25,7 +26,7 @@ const PizzaHistory: React.FC<{ player: PlayerResponse }> = ({ player }) => {
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
               Logged In at
             </th>
-            
+
             <th className="px-4 py-2"></th>
           </tr>
         </thead>
@@ -39,7 +40,6 @@ const PizzaHistory: React.FC<{ player: PlayerResponse }> = ({ player }) => {
               <td className="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                 {p.date_created}
               </td>
-              
             </tr>
           ))}
         </tbody>

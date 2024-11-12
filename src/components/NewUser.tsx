@@ -34,7 +34,7 @@ const NewUser: React.FC<NewUserProps> = ({
       console.log(data);
       if (isEditMode && initialData) {
         console.log(id);
-        await axios.put(`http://localhost:5000/api/v1/player/${id}`, data);
+        await axios.put(`${import.meta.env.VITE_BACKEND_API_URL}${id}`, data);
       } else {
         await HandleSubmitForm(data);
       }
@@ -52,9 +52,9 @@ const NewUser: React.FC<NewUserProps> = ({
     if (alert.show) {
       const timer = setTimeout(() => {
         setAlert({ show: false, success: false });
-      }, 3000); // Hide alert after 3 seconds
+      }, 3000);
 
-      return () => clearTimeout(timer); // Cleanup the timer on component unmount
+      return () => clearTimeout(timer);
     }
   }, [alert]);
 

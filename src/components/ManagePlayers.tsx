@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 const ManagePlayers: React.FC = () => {
   const [players, setPlayers] = useState<PlayerResponse[]>([]);
   const fetchPlayers = async () => {
-    const res = await axios.get('http://localhost:5000/api/v1/player');
+    const res = await axios.get(`${import.meta.env.VITE_BACKEND_API_URL}/player`);
+    console.log(res)
     console.log(res.data);
-    setPlayers(res.data);
+    //The data is in 0th index and 1st index consists status code
+    setPlayers(res.data[0]);
   };
   useEffect(() => {
     fetchPlayers();
@@ -40,7 +42,7 @@ const ManagePlayers: React.FC = () => {
         <tbody className="divide-y divide-gray-200 dark:divide-black">
           {players.map(player => (
             <tr key={player.id}>
-              <td className="whitespace-nowrap items-center px-4 py-2 font-medium text-gray-900 dark:text-white">
+              <td className="whitespace-nowrap items-center px-4 py-2 font-mediumtext-white">
                 {player.name}
               </td>
               <td className="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
