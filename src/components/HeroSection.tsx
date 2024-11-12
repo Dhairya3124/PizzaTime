@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 const HeroSection: React.FC = ()=>{
 return (
   <div className=' items-center justify-center text-center'>
@@ -7,12 +8,12 @@ return (
       </h1>
       <br />
       <div className="flex mt-4 items-center justify-center text-center space-x-10">
-        <a href="/new-user" className="bg-sky-500 hover:bg-sky-700 p-2 rounded-lg">
+        <Link to="/new-user" className="bg-sky-500 hover:bg-sky-700 p-2 rounded-lg">
         New Player🆕
-        </a>
-        <a href="/leaderboard" className="bg-red-600 hover:bg-red-700 p-2 rounded-lg">
+        </Link>
+        <Link to="/leaderboard" className="bg-red-600 hover:bg-red-700 p-2 rounded-lg">
         Leaderboard🚀
-        </a>
+        </Link>
       </div>
 
   </div>
